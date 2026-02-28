@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Royal Wedding Invitation</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 /* =============================== */
@@ -564,6 +564,58 @@ body::before{
   font-size:54px;
 }
 
+.alamat-mempelai{
+  margin-top: 8px !important;
+}
+  padding: 14px 16px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.alamat-title{
+  font-size: 14px;
+  letter-spacing: .6px;
+  opacity: .9;
+  margin-bottom: 12px;
+}
+
+.alamat-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.alamat-card{
+  padding: 14px 14px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  text-align: left;
+}
+
+.alamat-label{
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  opacity: .95;
+}
+
+.alamat-text{
+  font-size: 12.5px;
+  line-height: 1.55;
+  margin: 0;
+  opacity: .9;
+}
+
+@media (min-width: 520px){
+  .alamat-grid{
+    grid-template-columns: 1fr 1fr;
+  }
+}
 /* ===== SECTION ===== */
 section{
   opacity:0;
@@ -693,6 +745,16 @@ button{
   margin-top:15px;
   box-shadow:0 0 15px rgba(110,193,255,.8);
 }
+/* Kurangi jarak bawah dari section countdown */
+.countdown-section{
+  margin-bottom: 10px !important;
+  padding-bottom: 0 !important;
+}
+
+/* Kurangi jarak atas alamat */
+.alamat-mempelai{
+  margin-top: -20px !important;
+}
 /* ===== ULTRA MINI WA ICON ===== */
 .address-card{
   position:relative;
@@ -772,7 +834,143 @@ button{
   from{opacity:0;transform:translateY(20px)}
   to{opacity:1;transform:translateY(0)}
 }
+/* ===== FOTO PENUTUP ROYAL ===== */
 
+.foto-penutup{
+  text-align:center;
+  margin-top:40px;
+}
+
+.royal-photo-wrapper{
+  display:flex;
+  justify-content:center;
+}
+
+.royal-photo-frame{
+  position:relative;
+  width:85%;
+  max-width:420px;
+  padding:14px;
+  border-radius:28px;
+  background:linear-gradient(
+    145deg,
+    rgba(255,255,255,.10),
+    rgba(255,255,255,.03)
+  );
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(110,193,255,.35);
+  box-shadow:
+    0 0 35px rgba(110,193,255,.4),
+    0 20px 40px rgba(0,0,0,.6);
+  overflow:hidden;
+  transition:.5s;
+}
+
+.royal-photo-frame:hover{
+  transform:translateY(-6px);
+  box-shadow:
+    0 0 45px rgba(110,193,255,.6),
+    0 25px 50px rgba(0,0,0,.7);
+}
+
+.royal-photo-frame img{
+  width:100%;
+  border-radius:20px;
+  display:block;
+  animation:slowZoomRoyal 20s ease-in-out infinite alternate;
+}
+/* ===== PREMIUM FOTO PENUTUP ===== */
+
+.royal-photo-frame{
+  position:relative;
+  width:85%;
+  max-width:420px;
+  padding:14px;
+  border-radius:28px;
+  background:linear-gradient(
+    145deg,
+    rgba(255,255,255,.08),
+    rgba(255,255,255,.02)
+  );
+  backdrop-filter:blur(14px);
+
+  /* Border biru + gold */
+  border:1px solid rgba(110,193,255,.5);
+  box-shadow:
+    0 0 35px rgba(110,193,255,.4),
+    0 0 60px rgba(255,215,120,.2),
+    0 25px 50px rgba(0,0,0,.6);
+
+  overflow:hidden;
+  transition:.6s;
+}
+
+/* Hover Luxury */
+.royal-photo-frame:hover{
+  transform:translateY(-6px);
+  box-shadow:
+    0 0 45px rgba(110,193,255,.6),
+    0 0 80px rgba(255,215,120,.35),
+    0 30px 60px rgba(0,0,0,.7);
+}
+
+/* Caption Romantic */
+.royal-caption{
+  position:absolute;
+  bottom:18px;
+  left:0;
+  right:0;
+  text-align:center;
+  font-family:'Playfair Display', serif;
+  font-size:18px;
+  letter-spacing:1px;
+  color:#ffffff;
+  text-shadow:
+    0 0 15px rgba(110,193,255,.6),
+    0 0 25px rgba(255,215,120,.4);
+}
+
+/* Shimmer Halus */
+.royal-photo-frame::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:60%;
+  height:100%;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.4),
+    transparent
+  );
+  transform:skewX(-25deg);
+  animation:premiumSweep 8s infinite;
+}
+
+@keyframes premiumSweep{
+  0%{left:-120%}
+  100%{left:140%}
+}
+
+/* Zoom cinematic */
+@keyframes slowZoomRoyal{
+  from{transform:scale(1)}
+  to{transform:scale(1.07)}
+}
+
+/* Soft overlay */
+.royal-photo-frame::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(7,23,51,.5),
+    transparent 60%
+  );
+  pointer-events:none;
+}
 /* ===== SWEEP GLOW EFFECT ===== */
 .nama-penutup{
   position:relative;
@@ -955,8 +1153,296 @@ button{
   max-width:90%;
   border-radius:20px;
 }
+/* ===== ROYAL ADDRESS FRAME ===== */
+
+.alamat-royal{
+  position:relative;
+  overflow:hidden;
+}
+
+.alamat-wrapper{
+  position:relative;
+  padding:10px 0;
+}
+
+/* Title */
+.royal-title{
+  font-family:'Great Vibes',cursive;
+  font-size:34px;
+  margin:10px 0;
+  color:#6ec1ff;
+  text-shadow:0 0 20px rgba(110,193,255,.8);
+}
+
+/* Divider Glow */
+.royal-divider{
+  width:120px;
+  height:2px;
+  margin:18px auto;
+  background:linear-gradient(to right,transparent,#6ec1ff,transparent);
+  box-shadow:0 0 15px rgba(110,193,255,.7);
+}
+
+/* Frame Glow Effect */
+.alamat-royal::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:30px;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(110,193,255,.3),
+    transparent
+  );
+  animation:royalSweep 6s linear infinite;
+  z-index:0;
+}
+
+@keyframes royalSweep{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(100%)}
+}
+
+/* Card Upgrade */
+.royal-card{
+  position:relative;
+  z-index:1;
+  transition:.5s;
+}
+
+.royal-card:hover{
+  transform:translateY(-6px);
+  box-shadow:
+    0 0 30px rgba(110,193,255,.6),
+    0 0 60px rgba(110,193,255,.3);
+}
+/* ===== TOOLTIP ROYAL ===== */
+
+.tooltip-container{
+  position:relative;
+  display:inline-block;
+}
+
+.royal-tooltip{
+  position:absolute;
+  bottom:120%;
+  left:50%;
+  transform:translateX(-50%) translateY(10px);
+  background:linear-gradient(145deg,#0f2b55,#163b75);
+  color:#eaf4ff;
+  padding:8px 14px;
+  font-size:13px;
+  font-family:'Cormorant Garamond', serif;
+  border-radius:12px;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  transition:.3s ease;
+  box-shadow:
+    0 0 20px rgba(110,193,255,.5);
+  border:1px solid rgba(110,193,255,.4);
+}
+
+/* Arrow */
+.royal-tooltip::after{
+  content:"";
+  position:absolute;
+  top:100%;
+  left:50%;
+  transform:translateX(-50%);
+  border-width:6px;
+  border-style:solid;
+  border-color:#163b75 transparent transparent transparent;
+}
+/* ===== FRAME ACARA ROYAL ===== */
+
+.acara-royal{
+  margin-top:40px;
+  text-align:center;
+}
+
+.acara-card{
+  background:linear-gradient(
+    145deg,
+    rgba(255,255,255,.08),
+    rgba(255,255,255,.02)
+  );
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(110,193,255,.35);
+  border-radius:25px;
+  padding:25px;
+  margin:20px auto;
+  width:85%;
+  max-width:420px;
+
+  box-shadow:
+    0 0 30px rgba(110,193,255,.3),
+    0 20px 40px rgba(0,0,0,.6);
+
+  transition:.5s;
+}
+
+.acara-card:hover{
+  transform:translateY(-6px);
+  box-shadow:
+    0 0 45px rgba(110,193,255,.6),
+    0 25px 50px rgba(0,0,0,.7);
+}
+
+.acara-item h3{
+  font-family:'Playfair Display', serif;
+  font-size:22px;
+  letter-spacing:1px;
+  color:#6ec1ff;
+  margin-bottom:10px;
+}
+
+.acara-item p{
+  font-family:'Cormorant Garamond', serif;
+  font-size:17px;
+  margin:5px 0;
+  color:#eaf4ff;
+}
+/* Show Tooltip */
+.tooltip-container:hover .royal-tooltip{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+/* ===== ESTETIC EFFECT ACARA ===== */
+
+/* Fade up smooth */
+.fade-up{
+  opacity:0;
+  transform:translateY(40px);
+  animation:fadeUpRoyal 1.4s ease forwards;
+}
+
+@keyframes fadeUpRoyal{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* Glow pulse halus */
+.acara-card{
+  position:relative;
+  overflow:hidden;
+}
+
+.acara-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:25px;
+  box-shadow:0 0 30px rgba(110,193,255,.4);
+  animation:softPulse 4s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+
+@keyframes softPulse{
+  from{opacity:.4}
+  to{opacity:.8}
+}
+
+/* Light sweep pelan */
+.acara-card::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:60%;
+  height:100%;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.35),
+    transparent
+  );
+  transform:skewX(-25deg);
+  animation:lightSweep 7s infinite;
+}
+
+@keyframes lightSweep{
+  0%{left:-120%}
+  100%{left:140%}
+}
+
+/* Floating effect halus */
+.acara-card:hover{
+  transform:translateY(-8px);
+}
+/* ===== SCROLL REVEAL ESTETIK ===== */
+
+.reveal{
+  opacity:0;
+  transform:translateY(60px);
+  transition:all 1.2s cubic-bezier(.22,1,.36,1);
+}
+
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
+}
+/* ===== MUSIC CONTROL PREMIUM ===== */
+
+.music-control{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:linear-gradient(145deg,#163b75,#0f2b55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  color:#fff;
+  cursor:pointer;
+  z-index:999;
+  overflow:hidden;
+  transition:.4s ease;
+  box-shadow:
+    0 0 25px rgba(110,193,255,.7),
+    0 15px 30px rgba(0,0,0,.6);
+}
+
+/* Glow pulse */
+.music-control::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  box-shadow:0 0 30px rgba(110,193,255,.8);
+  animation:musicPulse 3s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+
+@keyframes musicPulse{
+  from{opacity:.4}
+  to{opacity:.9}
+}
+
+/* Ripple click effect */
+.music-control:active{
+  transform:scale(.9);
+}
+
+/* Rotating icon */
+.music-rotate{
+  animation:spinMusic 6s linear infinite;
+}
+
+@keyframes spinMusic{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
 </style>
-<head><section class="frame">
+</head>
+<body>
+  <section class="frame">
   <h2 class="gold-text fade-delay-1"
       style="font-family:'Great Vibes',cursive;font-size:36px;">
     Assalamu’alaikum Warahmatullahi Wabarakatuh
@@ -985,15 +1471,82 @@ button{
   </div>
 </section>
 </head>
+</body>
 
 <body>
 
 <div class="hero">
   <h1 class="gold-text">Budi & Ririn</h1>
   <div class="divider"></div>
-  <p>23 Dec 2026</p>
+  <p>23 Mei 2026</p>
   <div id="countdown"></div>
-</div>
+</div><section class="frame alamat-royal">
+  <div class="alamat-wrapper">
+
+    <div class="royal-divider"></div>
+    <h2 class="royal-title">Kediaman Mempelai</h2>
+    <div class="royal-divider"></div>
+
+    <div class="alamat-grid">
+
+      <div class="alamat-card royal-card">
+        <div class="icon-rumah">🏠</div>
+        <p class="alamat-label">Mempelai Pria</p>
+        <p class="alamat-text">
+          Putra dari Bapak Kamisan & Ibu Anik Suprapti.<br><br>
+          Bertempat tinggal di:<br>
+          Jl. Tirta Samudra Bandengan Jepara RT 09 / RW 03,<br>
+          Kelurahan Bandengan, Kecamatan Jepara,<br>
+          Kabupaten Jepara, Jawa Tengah.
+        </p>
+      </div>
+
+      <div class="alamat-card royal-card">
+        <div class="icon-rumah">🏠</div>
+        <p class="alamat-label">Mempelai Wanita</p>
+        <p class="alamat-text">
+          Putri dari Bapak Jayin & Ibu Eni Kusrini.<br><br>
+          Bertempat tinggal di:<br>
+          Jl. Bulungan Pakis Aji Wungu Kerep No. 8, RT 05 / RW 04,<br>
+          Kelurahan Bulungan, Kecamatan Pakis Aji,<br>
+          Kabupaten Jepara, Jawa Tengah.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="frame acara-royal reveal">
+
+  <div class="royal-divider"></div>
+  <h2 class="royal-title">Rangkaian Acara</h2>
+  <div class="royal-divider"></div>
+
+  <div class="acara-card">
+    <div class="acara-item">
+      <h3>Akad Nikah</h3>
+      <p>Sabtu, 23 Mei 2026</p>
+      <p>Pukul 09.00 WIB</p>
+      <p>Kediaman Mempelai Wanita</p>
+    </div>
+  </div>
+
+  <div class="acara-card">
+    <div class="acara-item">
+      <h3>Resepsi</h3>
+      <p>Mempelai Wanita</p>
+      <p>Sabtu, 23 Mei 2026</p>
+      <p>Pukul 10.00 WIB - Selesai</p>
+      <p>Kediaman Mempelai Wanita</p>
+      <h3>Resepsi</h3>
+      <p>Mempelai Pria</p>
+      <p>Jumat, 22 Mei 2026</p>
+      <p>Pukul 10.00 WIB - Selesai</p>
+      <p>Kediaman Mempelai Pria</p>
+    </div>
+  </div>
+
+</section>
 
 <section class="frame">
   <h2 class="gold-text">Album Kenangan</h2>
@@ -1044,11 +1597,11 @@ button{
   <h2 class="gold-text">Alamat Pengantin</h2>
   <div class="divider"></div>
 <div class="address-card">
-  <a href="https://wa.me/6281234567890" target="_blank" class="wa-icon">
+  <a href="https://wa.me/628885434832" target="_blank" class="wa-icon">
   <span class="wa-tooltip">Chat WhatsApp</span>
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
 </a>
-  <a href="https://instagram.com/usernamekamu" target="_blank" class="ig-icon">
+  <a href="https://instagram.com/andriyani821" target="_blank" class="ig-icon">
   <span class="ig-tooltip">Instagram</span>
   <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
 </a>
@@ -1063,14 +1616,18 @@ button{
   <h3 class="gold-text">Agus Budianto</h3>
 
   <p>Jl. Tirta Samudra Bandengan Jepara</p>
-
-  <button onclick="bukaRumahPria()">Lihat di Maps</button>
+  <div class="tooltip-container">
+  <button onclick="bukaRumahPria()" class="royal-btn">
+    Lihat di Maps
+  </button>
+  <span class="royal-tooltip">Buka lokasi di Google Maps</span>
+</div>
     </div>
 
-    <div class="address-card"><a href="https://wa.me/6281234567890" target="_blank" class="wa-icon">
+    <div class="address-card"><a href="https://wa.me/6281391832772" target="_blank" class="wa-icon">
   <span class="wa-tooltip">Chat WhatsApp</span>
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
-<a href="https://instagram.com/usernamekamu" target="_blank" class="ig-icon">
+<a href="https://instagram.com/budi.an26" target="_blank" class="ig-icon">
   <span class="ig-tooltip">Instagram</span>
   <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
 </a>
@@ -1087,21 +1644,18 @@ button{
 
   <p>Jl. Bulungan Pakis Aji Jepara</p>
 
-  <button onclick="bukaRumahWanita()">Lihat di Maps</button>
+  <div class="tooltip-container">
+  <button onclick="bukaRumahWanita()" class="royal-btn">
+    Lihat di Maps
+  </button>
+  <span class="royal-tooltip">Buka lokasi di Google Maps</span>
+</div>
 
 </div>
   </div>
 </section>
 
 <section class="frame">
-  <h2 class="gold-text">Lokasi Acara</h2>
-  <div class="divider"></div>
-  <button onclick="bukaMaps()">Buka di Google Maps</button>
-</section>
-
-<div class="lightbox" id="lightbox" onclick="this.style.display='none'">
-  <img id="lightboxImg">
-</div><section class="frame">
   <div class="divider fade-delay-1"></div>
 
   <p class="fade-delay-1" style="line-height:1.9;margin-top:15px;">
@@ -1184,7 +1738,7 @@ window.addEventListener("scroll",()=>{
 });
 
 /* Countdown */
-const target=new Date(2026,12,23,9,0,0).getTime();
+const target=new Date(2026,5,23,9,0,0).getTime();
 setInterval(()=>{
   const now=new Date().getTime();
   const d=target-now;
@@ -1223,33 +1777,41 @@ function prevSlide(){showSlide(currentSlide-1)}
 setInterval(()=>{nextSlide()},5000);
 
 /* Lightbox */
-function openLightbox(src){
+function openLightbox(element){
+  const img = element.querySelector("img").src;
+  document.getElementById("lightbox-img").src = img;
   document.getElementById("lightbox").style.display="flex";
-  document.getElementById("lightboxImg").src=src;
 }
 
 /* Maps */
-function bukaMaps(){
-  window.open("https://maps.app.goo.gl/PJYB6J9m7fMB1U8t7","_blank");
-}
 function bukaRumahPria(){
-  window.open("https://maps.app.goo.gl/XXXXX1","_blank");
+  window.open("https://maps.app.goo.gl/th8S1anUhD9R2A7q8");
 }
 function bukaRumahWanita(){
-  window.open("https://maps.app.goo.gl/XXXXX2","_blank");
+  window.open("https://maps.app.goo.gl/2MyqXHYrDmbtsLkE7","_blank");
 }
 /* ===== RSVP SYSTEM ===== */
 let total = 0;
+let daftarTamu = JSON.parse(localStorage.getItem("daftarTamu")) || [];
 function kirimRSVP(){
   const nama = document.getElementById("nama").value;
   const status = document.getElementById("status").value;
   const jumlah = parseInt(document.getElementById("jumlah").value) || 1;
   const pesan = document.getElementById("pesan").value;
+if(!nama){
+  showToast("Nama wajib diisi ⚠️");
+  return;
+}
 
-  if(!nama){
-    showToast("Nama wajib diisi ⚠️");
-    return;
-  }
+const dataBaru = {
+  nama,
+  status,
+  jumlah,
+  pesan
+};
+
+daftarTamu.unshift(dataBaru);
+localStorage.setItem("daftarTamu", JSON.stringify(daftarTamu));
 
   if(status === "Hadir"){
     total += jumlah;
@@ -1308,7 +1870,6 @@ function closeLightbox(){
 }
 </script>
 <div id="toast" class="toast">RSVP Berhasil Dikirim ✨</div>
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <img id="lightbox-img">
 </div>
 <script>
@@ -1412,5 +1973,138 @@ window.addEventListener("scroll",()=>{
 });
 
 </script>
+
+<script>function loadRSVP(){
+  daftarTamu.forEach(data => {
+
+    if(data.status === "Hadir"){
+      total += parseInt(data.jumlah);
+    }
+
+    const card = document.createElement("div");
+    card.className = "tamu-card";
+    card.innerHTML = `
+      <strong>${data.nama}</strong><br>
+      Status: ${data.status}<br>
+      Jumlah: ${data.jumlah}<br>
+      Pesan: ${data.pesan}
+    `;
+
+    document.getElementById("daftarHadir").appendChild(card);
+  });
+
+  document.getElementById("totalHadir").innerText = total;
+}
+
+window.onload = loadRSVP;
+</script><script>
+document.addEventListener("DOMContentLoaded", () => {
+  const els = document.querySelectorAll(".fade-up");
+  if (!els.length) return;
+
+  // fallback kalau browser ga support IntersectionObserver
+  if (!("IntersectionObserver" in window)) {
+    els.forEach(el => el.classList.add("show"));
+    return;
+  }
+
+  const rsvpObserverX = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        rsvpObserverX.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  els.forEach((el) => rsvpObserverX.observe(el));
+});
+</script><section class="frame foto-penutup show">
+  <div class="royal-photo-wrapper">
+    <div class="royal-photo-frame">
+      <img src="https://image2url.com/r2/default/images/1772302917108-9297eb6f-116c-4767-aa20-e8119c761b8a.png" alt="Foto Prewedding">
+    </div>
+  </div>
+
+  <div class="royal-quote">
+    “QR Sawer Hehee:v”
+  </div>
+</section><script>
+const music = document.getElementById("bgMusic");
+const icon = document.getElementById("musicIcon");
+
+let isPlaying = false;
+
+function toggleMusic(){
+  if(!isPlaying){
+    music.play().then(()=>{
+      icon.innerHTML = "⏸";
+      icon.classList.add("music-rotate");
+      isPlaying = true;
+    }).catch(err=>{
+      console.log("Autoplay diblok:", err);
+    });
+  } else {
+    music.pause();
+    icon.innerHTML = "▶";
+    icon.classList.remove("music-rotate");
+    isPlaying = false;
+  }
+}
+</script>
+<script>
+const reveals = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+},{ threshold: 0.15 });
+
+reveals.forEach(el=>{
+  observer.observe(el);
+});
+</script>
+<audio id="bgMusic" loop>
+  <source src="https://image2url.com/r2/default/audio/1772307537115-35513a77-cab6-4f42-89e3-8d546d382589.mp3" type="audio/mpeg">
+</audio>
+
+<div id="musicOverlay" style="
+position:fixed;
+inset:0;
+background:#071733;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:99999;
+">
+  <button onclick="startMusic()" style="
+    padding:15px 30px;
+    font-size:18px;
+    border-radius:30px;
+    border:none;
+    background:linear-gradient(45deg,#6ec1ff,#2c6ed5);
+    color:white;
+    box-shadow:0 0 20px rgba(110,193,255,.7);
+  ">
+    Buka Undangan
+  </button>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="musik.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function startMusic(){
+  const music = document.getElementById("bgMusic");
+  music.play();
+  document.getElementById("musicOverlay").style.display="none";
+}
+</script>
+
+</div>
 </body>
 </html>
