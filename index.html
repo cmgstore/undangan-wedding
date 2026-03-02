@@ -1815,7 +1815,7 @@ fetch("https://script.google.com/macros/s/AKfycbzun0mE7e07tm2CHuPU6ugGPXWNSN_Oxl
   body: JSON.stringify({
     nama: nama,
     jumlah: jumlah,
-    kehadiran: kehadiran,
+    kehadiran: status,
     pesan: pesan
   })
 })
@@ -1999,7 +1999,7 @@ window.addEventListener("scroll",()=>{
     card.className = "tamu-card";
     card.innerHTML = `
       <strong>${data.nama}</strong><br>
-      Status: ${data.status}<br>
+      : ${data.status}<br>
       Jumlah: ${data.jumlah}<br>
       Pesan: ${data.pesan}
     `;
