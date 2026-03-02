@@ -1812,6 +1812,9 @@ const dataBaru = {
 };
 fetch("https://script.google.com/macros/s/AKfycbzun0mE7e07tm2CHuPU6ugGPXWNSN_OxlaDVZ0WAygrF4eyBzVRbweYSR3WNgxPncGDbw/exec", {
   method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
   body: JSON.stringify({
     nama: nama,
     jumlah: jumlah,
@@ -1822,6 +1825,9 @@ fetch("https://script.google.com/macros/s/AKfycbzun0mE7e07tm2CHuPU6ugGPXWNSN_Oxl
 .then(res => res.json())
 .then(response => {
   console.log("Terkirim ke Google Sheet");
+})
+.catch(error => {
+  console.error("Error:", error);
 });
 daftarTamu.unshift(dataBaru);
 localStorage.setItem("daftarTamu", JSON.stringify(daftarTamu));
