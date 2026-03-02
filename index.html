@@ -1714,7 +1714,8 @@ button{
     <span id="totalHadir">0</span>
   </p>
 
-  <div id="daftarHadir"></div>
+  <div id="daftarHadir">
+  </div>
 </section>
 <script>
 
@@ -1809,7 +1810,19 @@ const dataBaru = {
   jumlah,
   pesan
 };
-
+fetch("https://script.google.com/macros/s/AKfycbyfJH1o7ie4Zu2cc7Au28iwLBZ9EUglmQwst1eDA7hIj7aa-LjZ0u5jyTOdMEk5Q60lDQ/exec", {
+  method: "POST",
+  body: JSON.stringify({
+    nama: nama,
+    jumlah: jumlah,
+    kehadiran: status,
+    pesan: pesan
+  })
+})
+.then(res => res.json())
+.then(response => {
+  console.log("Terkirim ke Google Sheet");
+});
 daftarTamu.unshift(dataBaru);
 localStorage.setItem("daftarTamu", JSON.stringify(daftarTamu));
 
@@ -1857,6 +1870,7 @@ function createConfetti(){
     setTimeout(()=>conf.remove(),3000);
   }
 }
+
 </script>
 <script>
 function openLightbox(element){
@@ -1997,7 +2011,8 @@ window.addEventListener("scroll",()=>{
 }
 
 window.onload = loadRSVP;
-</script><script>
+</script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
   const els = document.querySelectorAll(".fade-up");
   if (!els.length) return;
@@ -2104,7 +2119,6 @@ function startMusic(){
   document.getElementById("musicOverlay").style.display="none";
 }
 </script>
-
 </div>
 </body>
 </html>
