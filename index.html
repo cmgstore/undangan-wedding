@@ -360,29 +360,6 @@
   transform:scale(1.1);
 }
 
-/* ===== LIGHTBOX ===== */
-
-.lightbox{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.85);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-}
-
-.lightbox img{
-  max-width:90%;
-  max-height:85%;
-  border-radius:20px;
-  animation:zoomIn .4s ease;
-}
-
-@keyframes zoomIn{
-  from{transform:scale(.8);opacity:0}
-  to{transform:scale(1);opacity:1}
-}
 /* ===== RSVP STYLE ===== */
 input, select, textarea{
   width:100%;
@@ -566,7 +543,6 @@ body::before{
 
 .alamat-mempelai{
   margin-top: 8px !important;
-}
   padding: 14px 16px;
   max-width: 520px;
   margin-left: auto;
@@ -647,7 +623,7 @@ section.show{
   background:linear-gradient(to right,transparent,#6ec1ff,transparent);
 }
 
-/* ===== ALBUM ===== */
+/* ===== ===== */
 .album-container{position:relative;max-width:500px;margin:30px auto}
 .album-slide img{
   width:100%;
@@ -1469,18 +1445,14 @@ button{
     kepadanya, dan dijadikan-Nya di antara kamu rasa kasih dan sayang.”
     <br>(QS. Ar-Rum: 21)
   </div>
-</section>
-</head>
-</body>
-
-<body>
-
+  </section>
 <div class="hero">
   <h1 class="gold-text">Budi & Ririn</h1>
   <div class="divider"></div>
   <p>23 Mei 2026</p>
   <div id="countdown"></div>
-</div><section class="frame alamat-royal">
+</div>
+<section class="frame alamat-royal">
   <div class="alamat-wrapper">
 
     <div class="royal-divider"></div>
@@ -1549,8 +1521,6 @@ button{
 </section>
 
 <section class="frame">
-  <h2 class="gold-text">Album Kenangan</h2>
-  <div class="divider"></div>
 
   <div class="album-container">
     <button class="nav prev" onclick="prevSlide()">❮</button>
@@ -1561,32 +1531,39 @@ button{
     </div>
     <button class="nav next" onclick="nextSlide()">❯</button>
   </div>
-</section><section class="frame">
+</section>
+<section class="frame">
   <h2 class="gold-text">Album Kenangan</h2>
 
   <div class="gallery-grid">
 
-    <div class="gallery-item frame-style-1" onclick="openLightbox(this)">
+ <div class="gallery-item frame-style-1"
+onclick="openLightbox(this.querySelector('img').src)">
       <img src="https://image2url.com/r2/default/images/1772262431750-9723256d-dc6b-4685-a94f-33abc2b1f70f.png">
     </div>
 
-    <div class="gallery-item frame-style-2" onclick="openLightbox(this)">
+<div class="gallery-item frame-style-1"
+onclick="openLightbox(this.querySelector('img').src)">
       <img src="https://image2url.com/r2/default/images/1772262368017-038f18ef-34c2-46b8-b745-3ddc42ab45fb.png">
     </div>
 
-    <div class="gallery-item frame-style-3" onclick="openLightbox(this)">
+<div class="gallery-item frame-style-1"
+onclick="openLightbox(this.querySelector('img').src)">
       <img src="https://image2url.com/r2/default/images/1772262394410-174c532a-76ec-4dfc-ad55-b88feecad9d7.png">
     </div>
 
-    <div class="gallery-item frame-style-2" onclick="openLightbox(this)">
+<div class="gallery-item frame-style-1"
+onclick="openLightbox(this.querySelector('img').src)">
       <img src="https://image2url.com/r2/default/images/1772262415935-ea8a3b7c-c304-4d2c-b5a7-9a8f3da9ba0f.png">
     </div>
 
-    <div class="gallery-item frame-style-1" onclick="openLightbox(this)">
+<div class="gallery-item frame-style-1"
+onclick="openLightbox(this.querySelector('img').src)">
       <img src="https://image2url.com/r2/default/images/1772262820834-f646d584-651b-4292-a79a-a42cc721c8a9.png">
     </div>
 
-    <div class="gallery-item frame-style-3" onclick="openLightbox(this)">
+<div class="gallery-item frame-style-1"
+onclick="openLightbox(this.querySelector('img').src)">
       <img src="https://image2url.com/r2/default/images/1772262882296-858d36b9-7f93-4a89-9385-43da7b417bbb.png">
     </div>
 
@@ -1624,13 +1601,15 @@ button{
 </div>
     </div>
 
-    <div class="address-card"><a href="https://wa.me/628885434832" target="_blank" class="wa-icon">
+    <div class="address-card">
+  <a href="https://wa.me/628885434832" target="_blank" class="wa-icon">
   <span class="wa-tooltip">Chat WhatsApp</span>
   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+</a>
+
 <a href="https://instagram.com/andriyani821" target="_blank" class="ig-icon">
   <span class="ig-tooltip">Instagram</span>
   <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
-</a>
 </a>
       
   <div class="house-icon">🏠</div>
@@ -1778,11 +1757,11 @@ function prevSlide(){showSlide(currentSlide-1)}
 setInterval(()=>{nextSlide()},5000);
 
 /* Lightbox */
-function openLightbox(element){
-  const img = element.querySelector("img").src;
-  document.getElementById("lightbox-img").src = img;
+function openLightbox(src){
+  document.getElementById("lightbox-img").src = src;
   document.getElementById("lightbox").style.display="flex";
 }
+
 
 /* Maps */
 function bukaRumahPria(){
@@ -1810,7 +1789,7 @@ const dataBaru = {
   jumlah,
   pesan
 };
-fetch("https://script.google.com/macros/s/AKfycbxde3_b8JyzLFHm472szlLZTxWKlfqjo_PHDXjrovfFu2_ySCjs71eBeAyxlcVUG4_CvQ/exec", {
+fetch("https://script.google.com/macros/s/AKfycbxSRgFXcVGWd5WKvxw5W7qlDj3uOVDSD-W8D7_ILAE81iu8dzjYtALyNnu6fXz1l_KCQQ/exec", {
   method: "POST",
   headers: {
     "Content-Type": "application/json"
@@ -1879,28 +1858,26 @@ function createConfetti(){
 
 </script>
 <script>
-function openLightbox(element){
-  const img = element.querySelector("img").src;
-  document.getElementById("lightbox-img").src = img;
-  document.getElementById("lightbox").style.display="flex";
-}
 
 function closeLightbox(){
   document.getElementById("lightbox").style.display="none";
 }
 </script>
 <div id="toast" class="toast">RSVP Berhasil Dikirim ✨</div>
+
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
   <img id="lightbox-img">
 </div>
-<script>
-const galleryItems = document.querySelectorAll(".gallery-item");
 
-const observer = new IntersectionObserver((entries)=>{
+<script>
+  const galleryItems = document.querySelectorAll(".gallery-item");
+
+const galleryObserver = new IntersectionObserver((entries)=>{
   entries.forEach((entry,index)=>{
     if(entry.isIntersecting){
       setTimeout(()=>{
         entry.target.classList.add("show");
-      }, index * 150); // muncul satu-satu
+      }, index * 200);
     }
   });
 },{
@@ -1908,93 +1885,15 @@ const observer = new IntersectionObserver((entries)=>{
 });
 
 galleryItems.forEach(item=>{
-  observer.observe(item);
+  galleryObserver.observe(item);
 });
 </script>
+
 <script>
-const galleryItems = document.querySelectorAll(".gallery-item");
+function loadRSVP(){
+  total = 0;
+  document.getElementById("daftarHadir").innerHTML = "";
 
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach((entry,index)=>{
-    if(entry.isIntersecting){
-      setTimeout(()=>{
-        entry.target.classList.add("show");
-      }, index * 180);
-    }
-  });
-},{
-  threshold:0.15
-});
-
-galleryItems.forEach(item=>{
-  observer.observe(item);
-});
-</script>
-<script>
-
-/* Scroll Reveal + Stagger */
-const galleryItems = document.querySelectorAll(".gallery-item");
-
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach((entry,index)=>{
-    if(entry.isIntersecting){
-      setTimeout(()=>{
-        entry.target.classList.add("show");
-      }, index * 220);
-    }
-  });
-},{
-  threshold:0.2
-});
-
-galleryItems.forEach(item=>{
-  observer.observe(item);
-});
-
-/* Micro Parallax */
-window.addEventListener("scroll",()=>{
-  galleryItems.forEach(item=>{
-    const speed = 0.05;
-    const offset = window.scrollY * speed;
-    item.style.transform += ` translateY(${offset * 0.02}px)`;
-  });
-});
-
-</script>
-<script>
-
-/* Cinematic Reveal */
-const galleryItems = document.querySelectorAll(".gallery-item");
-
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach((entry,index)=>{
-    if(entry.isIntersecting){
-      setTimeout(()=>{
-        entry.target.classList.add("show");
-      }, index * 250);
-    }
-  });
-},{
-  threshold:0.25
-});
-
-galleryItems.forEach(item=>{
-  observer.observe(item);
-});
-
-/* Scroll Depth Cinematic */
-window.addEventListener("scroll",()=>{
-  const scrollY = window.scrollY;
-  galleryItems.forEach((item,i)=>{
-    const depth = (i % 3 + 1) * 0.02;
-    item.style.transform =
-      `translateY(${scrollY * depth * 0.1}px) scale(1)`;
-  });
-});
-
-</script>
-
-<script>function loadRSVP(){
   daftarTamu.forEach(data => {
 
     if(data.status === "Hadir"){
@@ -2005,7 +1904,7 @@ window.addEventListener("scroll",()=>{
     card.className = "tamu-card";
     card.innerHTML = `
       <strong>${data.nama}</strong><br>
-      : ${data.status}<br>
+      Status: ${data.status}<br>
       Jumlah: ${data.jumlah}<br>
       Pesan: ${data.pesan}
     `;
@@ -2016,7 +1915,7 @@ window.addEventListener("scroll",()=>{
   document.getElementById("totalHadir").innerText = total;
 }
 
-window.onload = loadRSVP;
+window.addEventListener("DOMContentLoaded", loadRSVP);
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -2040,7 +1939,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   els.forEach((el) => rsvpObserverX.observe(el));
 });
-</script><section class="frame foto-penutup show">
+</script>
+<section class="frame foto-penutup show">
   <div class="royal-photo-wrapper">
     <div class="royal-photo-frame">
       <img src="https://image2url.com/r2/default/images/1772302917108-9297eb6f-116c-4767-aa20-e8119c761b8a.png" alt="Foto Prewedding">
@@ -2050,29 +1950,7 @@ document.addEventListener("DOMContentLoaded", () => {
   <div class="royal-quote">
     “QR Sawer Hehee:v”
   </div>
-</section><script>
-const music = document.getElementById("bgMusic");
-const icon = document.getElementById("musicIcon");
-
-let isPlaying = false;
-
-function toggleMusic(){
-  if(!isPlaying){
-    music.play().then(()=>{
-      icon.innerHTML = "⏸";
-      icon.classList.add("music-rotate");
-      isPlaying = true;
-    }).catch(err=>{
-      console.log("Autoplay diblok:", err);
-    });
-  } else {
-    music.pause();
-    icon.innerHTML = "▶";
-    icon.classList.remove("music-rotate");
-    isPlaying = false;
-  }
-}
-</script>
+</section>
 <script>
 const reveals = document.querySelectorAll(".reveal");
 
@@ -2114,10 +1992,6 @@ z-index:99999;
   </button>
 </div>
 
-<audio id="bgMusic" loop>
-  <source src="musik.mp3" type="audio/mpeg">
-</audio>
-
 <script>
 function startMusic(){
   const music = document.getElementById("bgMusic");
@@ -2125,6 +1999,5 @@ function startMusic(){
   document.getElementById("musicOverlay").style.display="none";
 }
 </script>
-</div>
 </body>
 </html>
