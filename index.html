@@ -1770,65 +1770,54 @@ function bukaRumahPria(){
 function bukaRumahWanita(){
   window.open("https://maps.app.goo.gl/2MyqXHYrDmbtsLkE7","_blank");
 }
+</script>
+
+<script>
 /* ===== RSVP SYSTEM ===== */
 let total = 0;
-let daftarTamu = JSON.parse(localStorage.getItem("daftarTamu")) || [];
-function kirimRSVP(){
-  const nama = document.getElementById("nama").value;
+let daftarTamu = JSON.parse(localStorage.getItem("daftarTamu")) || [];function kirimRSVP(){
+  const nama = document.getElementById("nama").value.trim();
   const status = document.getElementById("status").value;
   const jumlah = parseInt(document.getElementById("jumlah").value) || 1;
-  const pesan = document.getElementById("pesan").value;
-if(!nama){
-  showToast("Nama wajib diisi ⚠️");
-  return;
-}
+  const pesan = document.getElementById("pesan").value.trim();
 
-const dataBaru = {
-  nama,
-  status,
-  jumlah,
-  pesan
-};
-fetch("https://script.google.com/macros/s/AKfycbybYFYPLo5--IORfRbUK5pM_TsnfUMJhg7WAUKH09E0BhJeNjqgbN2yqEwidHZZyFFOWw/exec", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    nama: nama,
-    jumlah: jumlah,
-    kehadiran: kehadiran,
-    pesan: pesan
-  })
-})
-.then(res => res.json())
-.then(response => {
-  console.log("Terkirim ke Google Sheet");
-})
-.catch(error => {
-  console.error("Error:", error);
-});
-daftarTamu.unshift(dataBaru);
-localStorage.setItem("daftarTamu", JSON.stringify(daftarTamu));
-
-  if(status === "Hadir"){
-    total += jumlah;
-    document.getElementById("totalHadir").innerText = total;
+  if(!nama){
+    showToast("Nama wajib diisi ⚠️");
+    return;
   }
 
-  const card = document.createElement("div");
-  card.className = "tamu-card";
-  card.innerHTML = `
-    <strong>${nama}</strong><br>
-    Status: ${status}<br>
-    Jumlah: ${jumlah}<br>
-    Pesan: ${pesan}
-  `;
+  const btn = document.querySelector(".rsvp-form button");
+  btn.disabled = true;
+  btn.innerText = "Mengirim...";
 
-  document.getElementById("daftarHadir").prepend(card);
+  const dataBaru = { nama, status, jumlah, pesan };
 
-  showToast("RSVP Berhasil Dikirim ✨");
-  createConfetti();
+  fetch("https://script.google.com/macros/s/AKfycbybYFYPLo5--IORfRbUK5pM_TsnfUMJhg7WAUKH09E0BhJeNjqgbN2yqEwidHZZyFFOWw/exec", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(dataBaru)
+  })
+  .then(res => res.text())
+  .then(response => {
+    console.log("Terkirim ke Google Sheet:", response);
+
+    daftarTamu.unshift(dataBaru);
+    localStorage.setItem("daftarTamu", JSON.stringify(daftarTamu));
+    loadRSVP();
+
+    showToast("RSVP Berhasil Dikirim ✨");
+    createConfetti();
+
+    btn.disabled = false;
+    btn.innerText = "Kirim RSVP";
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    btn.disabled = false;
+    btn.innerText = "Kirim RSVP";
+  });
 
   document.getElementById("nama").value="";
   document.getElementById("jumlah").value="";
