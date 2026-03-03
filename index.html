@@ -972,35 +972,73 @@ button{
   100%{left:100%}
 }
 /* ===== RSVP THEME INPUT ===== */
-.rsvp-form input,
-.rsvp-form select,
-.rsvp-form textarea{
-  width:100%;
-  padding:14px 16px;
-  margin-top:15px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,0.15);
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(8px);
-  color:white;
-  font-size:15px;
-  outline:none;
-  transition:0.3s;
+.rsvp-section {
+  text-align: center;
+  padding: 50px 20px;
 }
 
-/* Placeholder */
-.rsvp-form input::placeholder,
-.rsvp-form textarea::placeholder{
-  color:rgba(255,255,255,0.5);
+/* INPUT */
+.rsvp-section input,
+.rsvp-section select,
+.rsvp-section textarea {
+  width: 90%;
+  max-width: 420px;
+  padding: 14px;
+  margin: 12px 0;
+  border-radius: 15px;
+  border: 1px solid rgba(135, 206, 250, 0.25);
+  background: rgba(255,255,255,0.05);
+  color: #e6f2ff;
+  font-family: inherit;
+  transition: 0.3s ease;
 }
 
-/* Focus Effect */
-.rsvp-form input:focus,
-.rsvp-form select:focus,
-.rsvp-form textarea:focus{
-  border:1px solid #6ec1ff;
-  box-shadow:0 0 15px rgba(110,193,255,0.4);
-  background:rgba(255,255,255,0.12);
+/* FOCUS EFFECT */
+.rsvp-section input:focus,
+.rsvp-section select:focus,
+.rsvp-section textarea:focus {
+  border-color: #6ec1ff;
+  box-shadow: 0 0 15px rgba(93,173,226,0.4),
+              0 0 25px rgba(135,206,250,0.3);
+  outline: none;
+}
+
+/* BUTTON FULL ROYAL BLUE */
+button {
+  background: linear-gradient(120deg,#6ec1ff,#0f3b75);
+  color: #ffffff;
+  padding: 14px 35px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(110,193,255,.6);
+}
+
+/* SUCCESS TEXT */
+#successMessage {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #5dade2;
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.guest-counter {
+  margin-top: 25px;
+  font-size: 14px;
+  opacity: 0.8;
 }
 
 /* Dropdown Arrow Color */
@@ -1656,45 +1694,24 @@ onclick="openLightbox(this.querySelector('img').src)">
     Budi & Ririn
   </div>
 </section>
-<section class="frame">
-  <h2 class="gold-text">RSVP</h2>
+<section class="rsvp-section">
+  <h2>Konfirmasi Kehadiran</h2>
 
-  <div class="rsvp-form">
+  <form action="https://formspree.io/f/xzdalkyp" method="POST">
+    
+    <input type="text" name="nama" placeholder="Nama Lengkap" required>
 
-    <div class="input-group">
-      <input type="text" id="nama" placeholder=" " required>
-      <label>Nama Anda</label>
-    </div>
+    <select name="kehadiran" required>
+      <option value="">Pilih Kehadiran</option>
+      <option value="Hadir">Hadir</option>
+      <option value="Tidak Hadir">Tidak Hadir</option>
+    </select>
 
-    <div class="input-group">
-      <select id="status">
-        <option value="Hadir">Hadir</option>
-        <option value="Tidak Hadir">Tidak Hadir</option>
-      </select>
-      <label>Status Kehadiran</label>
-    </div>
+    <textarea name="ucapan" placeholder="Ucapan & Doa"></textarea>
 
-    <div class="input-group">
-      <input type="number" id="jumlah" placeholder=" " min="1">
-      <label>Jumlah Tamu</label>
-    </div>
+    <button type="submit">Kirim RSVP</button>
 
-    <div class="input-group">
-      <textarea id="pesan" rows="4" placeholder=" "></textarea>
-      <label>Ucapan & Doa</label>
-    </div>
-
-    <button onclick="kirimRSVP()">Kirim RSVP</button>
-
-  </div>
-
-  <p style="margin-top:25px;">
-    Total Tamu Hadir:
-    <span id="totalHadir">0</span>
-  </p>
-
-  <div id="daftarHadir">
-  </div>
+  </form>
 </section>
 <script>
 
@@ -1772,80 +1789,25 @@ function bukaRumahWanita(){
 }
 </script>
 
-<script>
-/* ===== RSVP SYSTEM ===== */
-let total = 0;
-let daftarTamu = JSON.parse(localStorage.getItem("daftarTamu")) || [];function kirimRSVP(){
-  const nama = document.getElementById("nama").value.trim();
-  const status = document.getElementById("status").value;
-  const jumlah = parseInt(document.getElementById("jumlah").value) || 1;
-  const pesan = document.getElementById("pesan").value.trim();
+<section class="rsvp-section">
+  <h2>Konfirmasi Kehadiran</h2>
 
-  if(!nama){
-    showToast("Nama wajib diisi ⚠️");
-    return;
-  }
+  <form action="https://formspree.io/f/ISI_ENDPOINT_KAMU" method="POST">
+    
+    <input type="text" name="nama" placeholder="Nama Lengkap" required>
 
-  const btn = document.querySelector(".rsvp-form button");
-  btn.disabled = true;
-  btn.innerText = "Mengirim...";
+    <select name="kehadiran" required>
+      <option value="">Pilih Kehadiran</option>
+      <option value="Hadir">Hadir</option>
+      <option value="Tidak Hadir">Tidak Hadir</option>
+    </select>
 
-  const dataBaru = { nama, status, jumlah, pesan };
+    <textarea name="ucapan" placeholder="Ucapan & Doa"></textarea>
 
-  fetch("https://script.google.com/macros/s/AKfycbwo1BDgF9hf4zqZH8Nngep80F0DbqqT4jQnKi1ajtagOYCh_H46livgx5MXMdWntTZTxQ/exec", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(dataBaru)
-  })
-  .then(res => res.text())
-  .then(response => {
-    console.log("Terkirim ke Google Sheet:", response);
+    <button type="submit">Kirim RSVP</button>
 
-    daftarTamu.unshift(dataBaru);
-    localStorage.setItem("daftarTamu", JSON.stringify(daftarTamu));
-    loadRSVP();
-
-    showToast("RSVP Berhasil Dikirim ✨");
-    createConfetti();
-
-    btn.disabled = false;
-    btn.innerText = "Kirim RSVP";
-  })
-  .catch(error => {
-    console.error("Error:", error);
-    btn.disabled = false;
-    btn.innerText = "Kirim RSVP";
-  });
-
-  document.getElementById("nama").value="";
-  document.getElementById("jumlah").value="";
-  document.getElementById("pesan").value="";
-}
-
-/* ===== TOAST FUNCTION ===== */
-function showToast(text){
-  const toast = document.getElementById("toast");
-  toast.innerText = text;
-  toast.classList.add("show");
-  setTimeout(()=>toast.classList.remove("show"),3000);
-}
-
-/* ===== CONFETTI EFFECT ===== */
-function createConfetti(){
-  for(let i=0;i<20;i++){
-    const conf = document.createElement("div");
-    conf.className="confetti";
-    conf.style.left=Math.random()*100+"vw";
-    conf.style.background=`hsl(${Math.random()*360},70%,60%)`;
-    conf.style.animationDuration=(2+Math.random()*2)+"s";
-    document.body.appendChild(conf);
-    setTimeout(()=>conf.remove(),3000);
-  }
-}
-
-</script>
+  </form>
+</section>
 <script>
 
 function closeLightbox(){
@@ -1879,32 +1841,49 @@ galleryItems.forEach(item=>{
 </script>
 
 <script>
-function loadRSVP(){
-  total = 0;
-  document.getElementById("daftarHadir").innerHTML = "";
+const form = document.getElementById("rsvpForm");
+const btn = document.getElementById("submitBtn");
+const loader = document.querySelector(".loader");
+const btnText = document.querySelector(".btn-text");
+const successMessage = document.getElementById("successMessage");
+const guestCount = document.getElementById("guestCount");
 
-  daftarTamu.forEach(data => {
+let count = localStorage.getItem("guestCount") || 0;
+guestCount.textContent = count;
 
-    if(data.status === "Hadir"){
-      total += parseInt(data.jumlah);
+form.addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  loader.style.display = "block";
+  btnText.style.display = "none";
+
+  const formData = new FormData(form);
+
+  try {
+    await fetch("https://formspree.io/f/xzdalkyp, {
+      method: "POST",
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    loader.style.display = "none";
+    btnText.style.display = "inline";
+    successMessage.classList.remove("hidden");
+
+    if (formData.get("kehadiran") === "Hadir") {
+      count++;
+      localStorage.setItem("guestCount", count);
+      guestCount.textContent = count;
     }
 
-    const card = document.createElement("div");
-    card.className = "tamu-card";
-    card.innerHTML = `
-      <strong>${data.nama}</strong><br>
-      Status: ${data.status}<br>
-      Jumlah: ${data.jumlah}<br>
-      Pesan: ${data.pesan}
-    `;
+    form.reset();
 
-    document.getElementById("daftarHadir").appendChild(card);
-  });
-
-  document.getElementById("totalHadir").innerText = total;
-}
-
-window.addEventListener("DOMContentLoaded", loadRSVP);
+  } catch (error) {
+    alert("Terjadi kesalahan, coba lagi.");
+  }
+});
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
